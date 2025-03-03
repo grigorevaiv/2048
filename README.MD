@@ -21,7 +21,7 @@ Relación entre Dockerfile, imagen y contenedor:
 * **Contenedor**  → es una instancia en ejecución de una imagen. Un contenedor ejecuta una aplicación, tiene su propio entorno, pero usa la imagen como base.
 Creación y ejecución de un contenedor en Docker
 
-![docker-file-img-container](/img/docker-file-img-container.jpg)
+![docker-file-img-container](img/docker-file-img-container.jpg)
 
 ### Como crear Dockerfile
 En esta práctica, creas un Dockerfile con el siguiente contenido:
@@ -52,8 +52,11 @@ docker run -d -p 80:80 2048
 ```
 El flag ```-d``` ejecuta el contenedor en segundo plano, y ```-p``` mapea los puertos (puerto 80 de la instancia AWS → puerto 80 del contenedor).
 
+La salida del terminal:
+![docker-build-run-2048](img/docker-build-run-2048.png)
+
 Ahora, si introduces la dirección IP pública de tu instancia de AWS en el navegador, verás el siguiente resultado.
-![2048-result](/img/2048-result.png)
+![2048-result](img/2048-result.png)
 
 Para consultar la lista de imágenes creadas, utiliza el siguiente comando:
 ```
@@ -61,7 +64,7 @@ docker images
 ```
 Ejemplo de salida:
 
-![docker-images-ex](/img/docker-images-ex.png)
+![docker-images-ex](img/docker-images-ex.png)
 
 La imagen que deseas publicar en Docker Hub debe contener el nombre de usuario en Docker Hub y el nombre de la imagen. Esta es una regla obligatoria.
 ```
@@ -79,11 +82,11 @@ docker login
 Puedes iniciar sesión utilizando tu nombre de usuario y contraseña, o usando un token. Para crear un token:
 1. Inicia sesión en tu cuenta de Docker Hub.
 2. Haz clic en el ícono de tu perfil en la esquina superior derecha.
-![docker-hub-token0](/img/docker-hub-token0.png)
+![docker-hub-token0](img/docker-hub-token0.png)
 3. Ve a Configuración de cuenta.
-![docker-hub-token1](/img/docker-hub-token1.png)
+![docker-hub-token1](img/docker-hub-token1.png)
 4. Selecciona la pestaña Personal access tokens.
-![docker-hub-token2](/img/docker-hub-token2.png)
+![docker-hub-token2](img/docker-hub-token2.png)
 5. Haz clic en Generar nuevo token y selecciona los permisos necesarios (**lectura, escritura y eliminación**).
 6. Copia el token y utilízalo para iniciar sesión en la terminal.
 7. Una vez que ingreses el token en la terminal, estarás autenticado en Docker Hub.
@@ -102,14 +105,14 @@ Puedes automatizar la actualización de imágenes de Docker en Docker Hub cada v
     * Accede a tu repositorio en GitHub →
     * Abre la pestaña Actions →
     * Haz clic en "Set up a workflow yourself" →
-![github-actions-create-workflow](/img/github-actions-create-workflow.png)    
+![github-actions-create-workflow](img/github-actions-create-workflow.png)    
     * En el editor que se abre, pega el contenido del archivo [enlace al archivo](https://github.com/josejuansanchez/2048-github-actions/blob/main/.github/workflows/publish-to-docker-hub.yml)  →
-![github-actions-create-workflow1](/img/github-actions-create-workflow1.png) 
+![github-actions-create-workflow1](img/github-actions-create-workflow1.png) 
     *  Guarda los cambios haciendo clic en "Commit changes".
 2. Configura las variables secretas
     * Para que el workflow pueda autenticarse en Docker Hub, debes agregar variables secretas:
         * Ve a Settings → Secrets and variables → Actions
-![github-actions-secrets](/img/github-actions-secrets.png) 
+![github-actions-secrets](img/github-actions-secrets.png) 
         * Haz clic en "New repository secret" y crea la variable ```DOCKERHUB_USERNAME``` con tu nombre de usuario de Docker Hub
         * Haz clic en "New repository secret" nuevamente, genera un Personal Access Token en Docker Hub y guárdalo con el nombre ```DOCKERHUB_TOKEN```
 
